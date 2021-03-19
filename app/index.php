@@ -10,6 +10,11 @@
 error_reporting(0);
 // error_reporting(E_ALL);
 
+// Allow from any origin
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    header("Access-Control-Allow-Origin: *");
+}
+
 // Import the access token.
 $rawAccessToken = file_get_contents("../secret/long-lived-token.txt");
 
@@ -70,7 +75,7 @@ try {
 }
 
 // Set header to send response as JSON.
-header('Content-Type: application/json');
+header("Content-Type: application/json");
 
 // Send response.
 echo $json;
