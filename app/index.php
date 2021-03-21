@@ -3,23 +3,23 @@
 * Get data from the Instagram Basic Display API.
 * Reference: https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-profiles-and-media
 * Olof Johansson
-* 2021-03-19
+* Updated: 2021-03-21
 */
 
 // Turn on or off error reporting.
 error_reporting(0);
 // error_reporting(E_ALL);
 
-// Allow from any origin
+// Import the allowed origin.
+$allowedOrigin = trim(file_get_contents("../config/allowed-origin.txt"));
+
+// Allow from specified origin.
 if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: $allowedOrigin");
 }
 
 // Import the access token.
-$rawAccessToken = file_get_contents("../secret/long-lived-token.txt");
-
-// Strip token of newlines
-$accessToken = trim($rawAccessToken);
+$accessToken = trim(file_get_contents("../config/long-lived-token.txt"));
 
 // The API URL without query params.
 $baseUrl = "https://graph.instagram.com/me/media";
