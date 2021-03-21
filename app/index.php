@@ -11,7 +11,7 @@ error_reporting(0);
 // error_reporting(E_ALL);
 
 // Import the allowed origin.
-$allowedOrigin = trim(file_get_contents("../config/allowed-origin.txt"));
+$allowedOrigin = trim(file_get_contents(__DIR__ . "/../config/allowed-origin.txt"));
 
 // Allow from specified origin.
 if (isset($_SERVER['HTTP_ORIGIN'])) {
@@ -19,7 +19,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 }
 
 // Import the access token.
-$accessToken = trim(file_get_contents("../config/long-lived-token.txt"));
+$accessToken = trim(file_get_contents(__DIR__ . "/../config/long-lived-token.txt"));
 
 // The API URL without query params.
 $baseUrl = "https://graph.instagram.com/me/media";
